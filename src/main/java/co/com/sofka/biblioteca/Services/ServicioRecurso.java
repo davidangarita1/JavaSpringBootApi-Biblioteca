@@ -30,14 +30,13 @@ public class ServicioRecurso {
     public Mensaje prestarUnRecurso(String id){
         RecursoDTO recursoDTO = encontrarPorId(id);
         Mensaje mensaje = new Mensaje().imprimirMensajePrestamo(recursoDTO.isDisponible(), recursoDTO.getFechaPrestamo());
+
         if (recursoDTO.isDisponible()){
             recursoDTO.setDisponible(false);
             recursoDTO.setFechaPrestamo(new Date());
+            Recurso recurso = mapper.fromDTO(recursoDTO);
+            mapper.fromCollection(repositorioRecurso.save(recurso));
         }
-
-        Recurso recurso = mapper.fromDTO(recursoDTO);
-        mapper.fromCollection(repositorioRecurso.save(recurso));
-
         return mensaje;
     }
 
@@ -48,15 +47,11 @@ public class ServicioRecurso {
         if (!recursoDTO.isDisponible()){
             recursoDTO.setDisponible(true);
             recursoDTO.setFechaPrestamo(null);
+            Recurso recurso = mapper.fromDTO(recursoDTO);
+            mapper.fromCollection(repositorioRecurso.save(recurso));
         }
-
-        Recurso recurso = mapper.fromDTO(recursoDTO);
-        mapper.fromCollection(repositorioRecurso.save(recurso));
-
         return mensaje;
     }
-
-
 
     public RecursoDTO crear(RecursoDTO recursoDTO){
         Recurso recurso = mapper.fromDTO(recursoDTO);

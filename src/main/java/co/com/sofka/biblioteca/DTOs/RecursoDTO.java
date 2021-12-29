@@ -17,6 +17,12 @@ public class RecursoDTO {
     public RecursoDTO() {
     }
 
+    public RecursoDTO(String nombre, AreaTematica areaTematica, Tipo tipo) {
+        this.nombre = nombre;
+        this.areaTematica = areaTematica;
+        this.tipo = tipo;
+    }
+
     public String getId() {
         return id;
     }
