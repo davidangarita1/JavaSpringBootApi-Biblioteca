@@ -41,6 +41,23 @@ public class ServicioRecurso {
         return mensaje;
     }
 
+    public Mensaje devolverUnRecurso(String id){
+        RecursoDTO recursoDTO = encontrarPorId(id);
+        Mensaje mensaje = new Mensaje().imprimirMensajeDevolucion(recursoDTO.isDisponible(), recursoDTO.getFechaPrestamo());
+
+        if (!recursoDTO.isDisponible()){
+            recursoDTO.setDisponible(true);
+            recursoDTO.setFechaPrestamo(null);
+        }
+
+        Recurso recurso = mapper.fromDTO(recursoDTO);
+        mapper.fromCollection(repositorioRecurso.save(recurso));
+
+        return mensaje;
+    }
+
+
+
     public RecursoDTO crear(RecursoDTO recursoDTO){
         Recurso recurso = mapper.fromDTO(recursoDTO);
         return mapper.fromCollection(repositorioRecurso.save(recurso));

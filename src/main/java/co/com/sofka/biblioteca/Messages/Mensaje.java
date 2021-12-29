@@ -34,4 +34,11 @@ public class Mensaje {
         }
         return new Mensaje("El recurso no esta disponible, fue prestado el: " + fechaPrestamo);
     }
+
+    public Mensaje imprimirMensajeDevolucion(Boolean disponibilidad, Date fechaPrestamo){
+        if(!disponibilidad){
+            return new Mensaje("El recurso fue entregado con exito");
+        }
+        return new Mensaje("El recurso no esta prestado");
+    }
 }
