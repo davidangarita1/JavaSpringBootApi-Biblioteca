@@ -42,7 +42,7 @@ public class ControladorRecurso {
 
     @GetMapping("/filtrarArea/{area}")
     public ResponseEntity<RecursoDTO> filtrarArea(@PathVariable String area) {
-        return new ResponseEntity(servicioRecurso.encontrarPorArea(area), HttpStatus.OK);
+        return new ResponseEntity(servicioRecurso.encontrarPorAreaTematica(area), HttpStatus.OK);
     }
 
     @GetMapping("/filtrarTipo/{tipo}")
@@ -52,7 +52,7 @@ public class ControladorRecurso {
 
     @GetMapping("/filtrarAreaYTipo")
     public ResponseEntity<RecursoDTO> mostrarDisponibilidd(@RequestBody Filtro filtro) {
-        return new ResponseEntity(servicioRecurso.encontrarPorAreaYTipo(filtro.getAreaTematica(), filtro.getTipo()), HttpStatus.OK);
+        return new ResponseEntity(servicioRecurso.encontrarPorAreaTematicaYTipo(filtro.getAreaTematica(), filtro.getTipo()), HttpStatus.OK);
     }
 
     @DeleteMapping("/borrar/{id}")

@@ -67,7 +67,7 @@ public class ServicioRecurso {
         return mapper.fromCollection(repositorioRecurso.save(recurso));
     }
 
-    public List<RecursoDTO> encontrarPorArea(String area){
+    public List<RecursoDTO> encontrarPorAreaTematica(String area){
         List<Recurso> recursos = repositorioRecurso.findByAreaTematica(area);
         return mapper.fromCollectionList(recursos);
     }
@@ -77,7 +77,7 @@ public class ServicioRecurso {
         return mapper.fromCollectionList(recursos);
     }
 
-    public List<RecursoDTO> encontrarPorAreaYTipo(String area, String tipo){
+    public List<RecursoDTO> encontrarPorAreaTematicaYTipo(String area, String tipo){
         List<Recurso> recursos = repositorioRecurso.findByAreaTematicaAndTipo(area, tipo);
         return mapper.fromCollectionList(recursos);
     }

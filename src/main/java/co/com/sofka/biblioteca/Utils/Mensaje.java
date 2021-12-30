@@ -31,7 +31,7 @@ public class Mensaje {
 
     public Mensaje imprimirMensajePrestamo(Boolean disponibilidad, Date fechaPrestamo){
         if(disponibilidad){
-            return new Mensaje(true, "El recurso esta disponible y te fue prestado");
+            return new Mensaje(true, "El recurso esta disponible");
         }
         return new Mensaje(false, "El recurso no esta disponible, fue prestado el: " + fechaPrestamo);
     }

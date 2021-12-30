@@ -9,5 +9,6 @@ public enum AreaTematica {
     TECNOLOGIA,
     ARTES,
     FILOSOFIA,
-    DEPORTES
+    DEPORTES,
+    FANTASIA
 }
