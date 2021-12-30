@@ -1,7 +1,7 @@
 package co.com.sofka.biblioteca.DTOs;
 
-import co.com.sofka.biblioteca.Enums.AreaTematica;
-import co.com.sofka.biblioteca.Enums.Tipo;
+import co.com.sofka.biblioteca.Utils.AreaTematica;
+import co.com.sofka.biblioteca.Utils.Tipo;
 
 import java.util.Date;
 

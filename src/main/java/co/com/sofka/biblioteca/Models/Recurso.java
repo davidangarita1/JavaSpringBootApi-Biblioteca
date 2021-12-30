@@ -1,7 +1,7 @@
 package co.com.sofka.biblioteca.Models;
 
-import co.com.sofka.biblioteca.Enums.AreaTematica;
-import co.com.sofka.biblioteca.Enums.Tipo;
+import co.com.sofka.biblioteca.Utils.AreaTematica;
+import co.com.sofka.biblioteca.Utils.Tipo;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,6 +19,13 @@ public class Recurso {
     private Tipo tipo;
 
     public Recurso() {
+    }
+
+    public Recurso(String id, String nombre, AreaTematica areaTematica, Tipo tipo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.areaTematica = areaTematica;
+        this.tipo = tipo;
     }
 
     public Recurso(String nombre, AreaTematica areaTematica, Tipo tipo) {

@@ -2,13 +2,13 @@ package co.com.sofka.biblioteca.Services;
 
 import co.com.sofka.biblioteca.DTOs.RecursoDTO;
 import co.com.sofka.biblioteca.Mappers.RecursoMapper;
-import co.com.sofka.biblioteca.Messages.Mensaje;
+import co.com.sofka.biblioteca.Utils.Mensaje;
 import co.com.sofka.biblioteca.Models.Recurso;
 import co.com.sofka.biblioteca.Repositories.RepositorioRecurso;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ServicioRecurso {
@@ -22,7 +22,16 @@ public class ServicioRecurso {
         return mapper.fromCollection(recurso);
     }
 
-    public Mensaje obtenerIdValidarDisponibilidad(String id){
+    public List<RecursoDTO> buscarTodos() {
+        List<Recurso> recurso = repositorioRecurso.findAll();
+        return mapper.fromCollectionList(recurso);
+    }
+
+    public void borrarRecursoPorId(String id) {
+        repositorioRecurso.deleteById(id);
+    }
+
+    public Mensaje comprobarDisponibilidad(String id){
         RecursoDTO recursoDTO = encontrarPorId(id);
         return new Mensaje().imprimirMensajeDisponibilidad(recursoDTO.isDisponible(), recursoDTO.getFechaPrestamo());
     }
@@ -56,5 +65,20 @@ public class ServicioRecurso {
     public RecursoDTO crear(RecursoDTO recursoDTO){
         Recurso recurso = mapper.fromDTO(recursoDTO);
         return mapper.fromCollection(repositorioRecurso.save(recurso));
+    }
+
+    public List<RecursoDTO> encontrarPorArea(String area){
+        List<Recurso> recursos = repositorioRecurso.findByAreaTematica(area);
+        return mapper.fromCollectionList(recursos);
+    }
+
+    public List<RecursoDTO> encontrarPorTipo(String tipo){
+        List<Recurso> recursos = repositorioRecurso.findByTipo(tipo);
+        return mapper.fromCollectionList(recursos);
+    }
+
+    public List<RecursoDTO> encontrarPorAreaYTipo(String area, String tipo){
+        List<Recurso> recursos = repositorioRecurso.findByAreaTematicaAndTipo(area, tipo);
+        return mapper.fromCollectionList(recursos);
     }
 }
